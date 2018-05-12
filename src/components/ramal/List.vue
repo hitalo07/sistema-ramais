@@ -1,21 +1,17 @@
 <template>
   <div>
+    <q-search
+      color="secondary"
+      v-model="filter"
+      class="col-6"
+    />
+    <br>
     <q-table
-    title="Lista de Ramais"
-    :data="tableData"
-    :columns="columns"
-    row-key="name"
-    :filter="filter"
-  >
-    <template slot="top-right" slot-scope="props">
-        <q-search
-          hide-underline
-          color="secondary"
-          v-model="filter"
-          class="col-6"
-        />
-      </template>
-  </q-table>
+      :data="tableData"
+      :columns="columns"
+      row-key="name"
+      :filter="filter"
+    />
   </div>
 </template>
 
@@ -25,6 +21,7 @@ export default {
   // name: 'ComponentName',
   data: () => ({
     filter: '',
+    loading: false,
     columns: [
       {
         name: 'nome',
@@ -71,6 +68,12 @@ export default {
   }),
   computed: {
     ...mapGetters('ramal', ['leanList'])
+  },
+  methods: {
+    submit () {
+      const database = this.$firebase.database()
+      database.$ref('tasks')
+    }
   },
   mounted () {
     this.tableData = this.leanList

@@ -1,14 +1,19 @@
 <template>
-  <q-page class="flex flex-center">
-    <img alt="Quasar logo" src="~assets/quasar-logo-full.svg">
+  <q-page padding>
+    <!-- content -->
+    <list-ramais />
   </q-page>
 </template>
 
-<style>
-</style>
-
 <script>
+import ListRamais from 'components/ramal/List'
 export default {
-  name: 'PageIndex'
+  // name: 'PageName',
+  components: {
+    ListRamais
+  }
 }
 </script>
+
+<style>
+</style>
